@@ -1,3 +1,9 @@
+import { useState, useEffect } from 'react';
+import { fetchTrending } from '../../services/moviexApi';
+import { Link } from 'react-router-dom';
+
 export const MoviesPage = () => {
-  return <p>Welcome to movies website Movies-page</p>;
+  return;
 };
+
+// fetchTrending().then(data => setMovies(data));
