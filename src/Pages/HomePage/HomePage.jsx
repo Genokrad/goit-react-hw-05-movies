@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchTrending } from '../../services/moviexApi';
+import { fetchTrending } from '../../services/moviesApi';
 import { Link } from 'react-router-dom';
 
 export const HomePage = () => {
@@ -15,7 +15,7 @@ export const HomePage = () => {
     <ul>
       {movies.map(movie => (
         <li key={movie.id}>
-          <Link to={movie.id}>{movie.title}</Link>
+          <Link to={`movies/${movie.id}`}>{movie.title}</Link>
         </li>
       ))}
     </ul>
