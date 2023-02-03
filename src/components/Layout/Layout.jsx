@@ -4,10 +4,10 @@ import { Outlet } from 'react-router';
 export const Layout = () => {
   return (
     <>
-      <header>
+      <header className="Header">
         <Navigation />
       </header>
-      <main>
+      <main className="main">
         <Outlet />
       </main>
     </>
