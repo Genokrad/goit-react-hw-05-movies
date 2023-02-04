@@ -1,11 +1,32 @@
-import { useFetchCast } from 'components/Hooks/UseFetchMovies';
+// import { useFetchCast } from 'components/Hooks/UseFetchMovies';
 import worker from '../../images/worker.png';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
+import { fetchCast } from '../../services/moviesApi';
+import { Loader } from 'components/Loader/Loader';
 
-export const Cast = () => {
+const Cast = () => {
+  const [cast, setCast] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const useFetchCast = () => {
+    const { movieId } = useParams();
+
+    useEffect(() => {
+      fetchCast(movieId)
+        .then(setCast)
+        .catch(error => console.log('Something went wrong Home Page'))
+        .finally(setLoading(false));
+    }, [movieId]);
+
+    return cast;
+  };
+
   const casts = useFetchCast();
-  // console.log(casts);
+
   return (
     <ul className="castList">
+      {loading && <Loader />}
       {casts &&
         casts.map(cast => (
           <li className="castItem" key={cast.id}>
@@ -29,3 +50,5 @@ export const Cast = () => {
     </ul>
   );
 };
+
+export default Cast;

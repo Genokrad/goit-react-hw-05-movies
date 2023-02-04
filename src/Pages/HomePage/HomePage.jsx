@@ -2,18 +2,22 @@ import { useState, useEffect } from 'react';
 import { fetchTrending } from '../../services/moviesApi';
 import { Link } from 'react-router-dom';
 import worker from '../../images/worker.png';
+import { Loader } from 'components/Loader/Loader';
 
-export const HomePage = () => {
+const HomePage = () => {
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchTrending().then(setMovies);
-    // .catch()
-    // .finally();
+    fetchTrending()
+      .then(setMovies)
+      .catch(error => console.log('Something went wrong Home Page'))
+      .finally(setLoading(false));
   }, []);
 
   return (
     <ul className="filmList">
+      {loading && <Loader />}
       {movies.map(movie => (
         <li key={movie.id}>
           <div className="movie-wraper">
@@ -39,3 +43,5 @@ export const HomePage = () => {
     </ul>
   );
 };
+
+export default HomePage;

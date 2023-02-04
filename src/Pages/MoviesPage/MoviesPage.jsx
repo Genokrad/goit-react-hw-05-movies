@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom';
 import { SearchForm } from 'components/SearchForm/SearchForm';
 // import { useFetchMovies } from 'components/Hooks/UseFetchMovies';
 
-export const MoviesPage = () => {
+const MoviesPage = () => {
   const [inputValue, setInputValue] = useState('');
   // const [query, setQuery] = useState('');
   const [moviesFromQuery, setMoviesFromQuery] = useState(null);
@@ -41,3 +41,5 @@ export const MoviesPage = () => {
     </>
   );
 };
+
+export default MoviesPage;

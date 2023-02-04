@@ -1,8 +1,9 @@
 import { useFetchMovies } from 'components/Hooks/UseFetchMovies';
 
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Suspense } from 'react';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const movie = useFetchMovies();
   const navigate = useNavigate();
   const location = useLocation();
@@ -14,7 +15,6 @@ export const MovieDetails = () => {
           navigate(location?.state?.from ?? '/');
         }}
       >
-        {console.log(location)}
         Back
       </button>
       {movie && (
@@ -64,9 +64,12 @@ export const MovieDetails = () => {
             Rewiews
           </Link>
         </div>
-
-        <Outlet />
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
       </div>
     </>
   );
 };
+
+export default MovieDetails;
