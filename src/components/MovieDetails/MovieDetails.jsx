@@ -2,6 +2,7 @@ import { useFetchMovies } from 'components/Hooks/UseFetchMovies';
 
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Suspense } from 'react';
+import { Loader } from 'components/Loader/Loader';
 
 const MovieDetails = () => {
   const movie = useFetchMovies();
@@ -64,7 +65,7 @@ const MovieDetails = () => {
             Rewiews
           </Link>
         </div>
-        <Suspense fallback={null}>
+        <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
       </div>
