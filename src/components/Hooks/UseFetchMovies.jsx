@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { fetchMovie } from '../../services/moviesApi';
 import { fetchReviews } from '../../services/moviesApi';
-// import { fetchCast } from '../../services/moviesApi';
+import { fetchCast } from '../../services/moviesApi';
 
 export const useFetchMovies = () => {
   const [movie, setMovie] = useState(null);
@@ -30,13 +30,13 @@ export const useFetchReviews = () => {
   return reviews;
 };
 
-// export const useFetchCast = () => {
-//   const [cast, setCast] = useState(null);
-//   const { movieId } = useParams();
+export const useFetchCast = () => {
+  const [cast, setCast] = useState(null);
+  const { movieId } = useParams();
 
-//   useEffect(() => {
-//     fetchCast(movieId).then(setCast);
-//   }, [movieId]);
+  useEffect(() => {
+    fetchCast(movieId).then(setCast);
+  }, [movieId]);
 
-//   return cast;
-// };
+  return cast;
+};

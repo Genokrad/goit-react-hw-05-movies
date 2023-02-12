@@ -1,33 +1,11 @@
-// import { useFetchCast } from 'components/Hooks/UseFetchMovies';
+import { useFetchCast } from 'components/Hooks/UseFetchMovies';
 import worker from '../../images/worker.png';
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
-import { fetchCast } from '../../services/moviesApi';
-import { Loader } from 'components/Loader/Loader';
 
 const Cast = () => {
-  const [cast, setCast] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  const useFetchCast = () => {
-    const { movieId } = useParams();
-
-    useEffect(() => {
-      fetchCast(movieId)
-        .then(setCast)
-        .catch(error => console.log('Something went wrong Home Page'))
-        .finally(setLoading(false));
-    }, [movieId]);
-
-    return cast;
-  };
-
   const casts = useFetchCast();
-
   return (
     <ul className="castList">
-      {loading && <Loader />}
-      {casts &&
+      {casts && casts.length > 0 ? (
         casts.map(cast => (
           <li className="castItem" key={cast.id}>
             <img
@@ -46,7 +24,10 @@ const Cast = () => {
               <p>Character:{cast.character}</p>
             </div>
           </li>
-        ))}
+        ))
+      ) : (
+        <p className="reviewsText">We don't find any actors</p>
+      )}
     </ul>
   );
 };
