@@ -15,7 +15,9 @@ export const SearchForm = ({
         inputValue={inputValue}
         handleChange={handleChange}
       />
-      <MovieFromSearch query={query} moviesFromQuery={moviesFromQuery} />
+      {moviesFromQuery && (
+        <MovieFromSearch query={query} moviesFromQuery={moviesFromQuery} />
+      )}
     </>
   );
 };
